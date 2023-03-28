@@ -1,6 +1,6 @@
 <?php
 function get_nombre_de_personne() {
-    $db = new SQLite3("/home/thaha/Documents/Compteur CMI/db.sqlite");
+    $db = new SQLite3("db.sqlite");
 
     if (!$db) {
         die("Erreur de connexion à la base de données");
@@ -23,7 +23,7 @@ function get_nombre_de_personne() {
 }
 
 if(isset($_GET['submit'])) {
-    $db = new SQLite3('/home/thaha/Documents/Compteur CMI/db.sqlite');
+    $db = new SQLite3('db.sqlite');
     
     if (!$db) {
         die("Erreur de connexion à la base de données");
@@ -31,12 +31,15 @@ if(isset($_GET['submit'])) {
     switch($_GET['submit']) {
         case 'incrementer':
             $db->query("UPDATE compeurDB SET nombre_de_personne = nombre_de_personne + 1 WHERE id=1");
+            header('Location: index.php');
             break;
         case 'decrementer':
             $db->query("UPDATE compeurDB SET nombre_de_personne = nombre_de_personne - 1 WHERE id=1");
+            header('Location: index.php');            
             break;
         case 'reset':
             $db->query("UPDATE compeurDB SET nombre_de_personne = 0 WHERE id=1");
+            header('Location: index.php');
             break;
         default:
             break;
