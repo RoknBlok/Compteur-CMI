@@ -1,12 +1,12 @@
 <?php
-function get_nombre_de_personne() {
+function get_nombre_de_personne($id) {
     $db = new SQLite3("db.sqlite");
 
     if (!$db) {
         die("Erreur de connexion à la base de données");
     }
     
-    $result = $db->query("SELECT nombre_de_personne FROM compeurDB WHERE id = 1");
+    $result = $db->query("SELECT nombre_de_personne FROM compeurDB WHERE id = $id");
 
     if ($result) {
         $row = $result->fetchArray(SQLITE3_ASSOC); //on récupère le nb de personne dans un tableau associatif
@@ -48,6 +48,9 @@ if(isset($_GET['submit'])) {
     $db->close();
 }
 
+if(isset($_GET['id'])) {
+    $id = $_GET['id'];
+}
 ?>
 
 <!DOCTYPE html>
@@ -78,7 +81,7 @@ if(isset($_GET['submit'])) {
         $max = 50;
     ?>
     <h2><span id="nombre_de_personne"><?php echo get_nombre_de_personne(); ?></span>  <?php echo '/ ' . $max ?></h2>
-    <progress value="<?php echo get_nombre_de_personne(); ?>" max="<?php echo $max?>"></progress>
+    <progress value="<?php echo get_nombre_de_personne($id); ?>" max="<?php echo $max?>"></progress>
     <form action="index.php" method="get">
         <button class="button b-green" type="submit" name="submit" value="incrementer">Incrémenter le compteur</button>
         <br>
