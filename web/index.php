@@ -42,6 +42,7 @@ if(isset($_GET['submit'])) {
             header('Location: index.php');
             break;
         default:
+            header('Location: index.php');
             break;
     }
     $db->close();
