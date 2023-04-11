@@ -30,6 +30,9 @@ if(isset($_GET['submit'])) {
 if(isset($_GET['id'])) {
     $id = $_GET['id'];
 }
+else{
+    echo "pas d'ID";
+}
 ?>
 
 <!DOCTYPE html>
