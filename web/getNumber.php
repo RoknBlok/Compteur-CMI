@@ -1,5 +1,5 @@
 <?php
-$db = new SQLite3("/home/thaha/Documents/Compteur CMI/db.sqlite");
+$db = new SQLite3("db.sqlite");
 
 if (!$db) {
     die("Erreur de connexion à la base de données");
